@@ -1,129 +1,32 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+class ElectricityBill:
+    def __init__(self, previous_reading, current_reading, tariff_rate, fixed_charges=0, taxes=0, surcharges=0):
+        self.previous_reading = previous_reading
+        self.current_reading = current_reading
+        self.tariff_rate = tariff_rate
+        self.fixed_charges = fixed_charges
+        self.taxes = taxes
+        self.surcharges = surcharges
+        
+    def calculate_units_consumed(self):
+        return self.current_reading - self.previous_reading
+    
+    def calculate_energy_charge(self):
+        return self.calculate_units_consumed() * self.tariff_rate
+    
+    def calculate_total_bill(self):
+        energy_charge = self.calculate_energy_charge()
+        total_bill = energy_charge + self.fixed_charges + self.taxes + self.surcharges
+        return total_bill
+    
+    def print_bill(self):
+        print("\nElectricity Bill")
+        print("---------------")
+        print("Energy charge:\t\t", self.calculate_energy_charge())
+        print("Fixed charges:\t\t", self.fixed_charges)
+        print("Taxes:\t\t\t", self.taxes)
+        print("Surcharges:\t\t", self.surcharges)
+        print("Total bill:\t\t", self.calculate_total_bill())
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+# create an instance of the ElectricityBill class and calculate the bill
+bill = ElectricityBill(1000, 1200, 10, 50, 20, 5)
+bill.print_bill()
